@@ -1,0 +1,6 @@
+{
+"Version": "2012-10-17",
+"Statement": [
+{ "Effect": "Allow", "Action": ["cloudwatch:GetMetricStatistics","cloudwatch:ListMetrics","ec2:DescribeInstances","sns:Publish","logs:CreateLogGroup","logs:CreateLogStream","logs:PutLogEvents"], "Resource": "*" }
+]
+}
