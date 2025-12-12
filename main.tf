@@ -1,5 +1,5 @@
 ####################################
-# Security Group
+# Security Groups
 ####################################
 resource "aws_security_group" "allow_http" {
   name_prefix = "allow-http"
