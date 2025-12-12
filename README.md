@@ -1,4 +1,4 @@
-# 🚀 DevOps Assignment — Terraform EC2 Deployment (Auto Env Selection)
+# 🚀 DevOps Assignment — Terraform EC2 Deployment (Auto Env Selections)
 
 This project automates the provisioning and configuration of an **AWS EC2 instance** using **Terraform**.  
 It installs all dependencies, clones a sample Java application from GitHub, builds it using Maven, and runs it automatically on port **80**.  
