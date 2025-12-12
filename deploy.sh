@@ -17,6 +17,6 @@ else
   exit 1
 fi
 
-echo "🚀 Deploying $ENV environment using $VAR_FILE ..."
+echo "🚀 Deploying $ENV environments using $VAR_FILE ..."
 terraform init -reconfigure
 terraform apply -var-file="$VAR_FILE" -auto-approve
