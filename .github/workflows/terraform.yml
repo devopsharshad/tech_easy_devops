@@ -1,0 +1,38 @@
+name: Deploy to EC2 via CodeDeploy
+on:
+push:
+branches:
+- main
+jobs:
+build-and-deploy:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout code
+uses: actions/checkout@v4
+- name: Build (optional)
+run: |
+# If you have build steps (npm, mvn, etc) run them here.
+# Example: npm install && npm run build
+echo "No build steps defined"
+- name: Create deployment package
+run: |
+zip -r app.zip . -x ".git/*" ".github/*" "node_modules/*"
+- name: Configure AWS credentials
+uses: aws-actions/configure-aws-credentials@v4
+with:
+aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+aws-region: ${{ secrets.AWS_REGION }}
+- name: Upload artifact to S3
+run: |
+aws s3 cp app.zip s3://my-app-artifacts-bucket111111/app.zip
+- name: Create CodeDeploy deployment
+env:
+AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+AWS_REGION: ${{ secrets.AWS_REGION }}
+run: |
+aws deploy create-deployment \
+--application-name MyApp \
+--deployment-group-name MyApp-DeploymentGroup \
+--s3-location bucket=my-app-artifacts-bucket111111,key=app.zip,bundleType=zip
