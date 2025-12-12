@@ -29,7 +29,7 @@ jobs:
 
       - name: Upload artifact to S3
         run: |
-          aws s3 cp app.zip s3://my-app-artifacts-bucket111111/app.zip
+          aws s3 cp app.zip s3://my-app-artifacts-bucket12122025/app.zip
       - name: Create CodeDeploy deployment
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
